@@ -4,7 +4,7 @@ clear;
 % Caracteristicas do motor
 % Preset Model 13
 Ra = 1.086; % Resistencia de armadura
-w0 = 221.3; % Velocidade a vazio
+w0 = 184.61; % Velocidade a vazio
 kphi = 1.3; % K phi nominal
 
 Va = 240; % Tensão de terminal
@@ -32,5 +32,6 @@ hold on
 Va4 = 240*0.25; % Tensão de terminal 25%
 Te = kphi*((Va4-Pmech*kphi))/Ra;
 plot(Pmech,Te,'LineWidth',2)
-legend('Va = 500 V','Va = 375 V','Va = 250 V','Va = 125 V')
+
+legend('Va = 240 V','Va = 180 V','Va = 120 V','Va = 60 V')
 hold off
