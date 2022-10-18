@@ -2,37 +2,38 @@ clc
 clear;
 
 % Características do motor
-Ra = 1.086; % Resistência de armadura
-
-n0 = 184.61; % Velocidade nominal
-kphi = 1.3;
+Ra = 1.086; % Resistencia de armadura
+Ia = 1.672;
+Laf = 0.6458;
+If = 1.667;
 Va = 240; % Tensão de terminal
-velo = linspace(0,n0,100000);% Potência mecânica
-tem = kphi*((Va-velo*kphi))/Ra;
+Tem = 1.8;
 
-plot(velo,tem,'LineWidth',2)
-ylabel('T_{mec} [N.m]')
+kphi = Laf * If; % K phi nominal
+w0 = (kphi*Va - Tem*Ra)/(kphi*kphi) % Velocidade a vazio = 238.18
+
+Pmech = linspace(0,w0,100000); % Potência mecânica
+Te = kphi*((Va-kphi*Pmech))/Ra;
+plot(Pmech,Te,'LineWidth',2)
+
 title('Torque x Velocidade')
+ylabel('T_{mec} [N.m]')
 xlabel('Velocidade [rad/s]')
-
 grid on
 hold on
-kphi = 1.3*0.9;
 
-%velo = linspace(0,n0,100000);% Potência mecânica
-tem = kphi*((Va-velo*kphi))/Ra;
-plot(velo,tem,'LineWidth',2)
+kphi = 1.07*0.9; % K phi 90%
+Te = kphi*((Va-Pmech*kphi))/Ra;
+plot(Pmech,Te,'LineWidth',2)
 hold on
-kphi=1.3*0.80;
 
-%velo = linspace(0,n0,100000);% Potência mecânica
-tem = kphi*((Va-velo*kphi))/Ra;
-plot(velo,tem,'LineWidth',2)
+kphi = 1.07*0.8; % K phi 80%
+Te = kphi*((Va-Pmech*kphi))/Ra;
+plot(Pmech,Te,'LineWidth',2)
 hold on
-kphi = 1.3*0.7;
 
-%velo = linspace(0,n0,100000);% Potência mecânica
-tem = kphi*((Va-velo*kphi))/Ra;
-plot(velo,tem,'LineWidth',2)
-legend('k\phi = 100%','k\phi = 90%','k\phi = 80%','k\phi = 70%')
+kphi = 1.07*0.7; % K phi 70%
+Te = kphi*((Va-Pmech*kphi))/Ra;
+plot(Pmech,Te,'LineWidth',2)
+legend('k\phi = 1.07','k\phi = 0.96','k\phi = 0.85','k\phi = 0.74')
 hold off
