@@ -6,12 +6,12 @@ clear;
 Ra = 1.086; % Resistencia de armadura
 Laf = 0.6458;
 If = 1.667;
-B = 0.003;
+B = 0.0034;
 Va = 240; % Tensão de terminal
 Tem = 1.8;
 
 kphi = Laf * If % K phi nominal
-w0 = (kphi*Va - Tem*Ra)/(kphi*kphi) % Velocidade a vazio = 238.18
+w0 = (Va*kphi)/(Ra * B + kphi*kphi) % Velocidade a vazio = 222.24
 
 Pmech = linspace(0,w0,100000); % Potência mecânica
 
